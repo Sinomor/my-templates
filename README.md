@@ -1,1 +1,1 @@
-it's templates for myself usage only, they may not be right for you
+it's templates for xbps-src for myself usage only, they may not be right for you
