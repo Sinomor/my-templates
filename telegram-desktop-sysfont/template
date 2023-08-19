@@ -21,7 +21,6 @@ makedepends="alsa-lib-devel boost-devel fmt-devel ffmpeg-devel gobject-introspec
  glibmm2.68-devel tg_owt webkit2gtk-devel rnnoise-devel jemalloc-devel qt6-declarative-devel"
 depends="qt6-imageformats"
 short_desc="Telegram Desktop messaging app"
-maintainer="John <me@johnnynator.dev>"
 license="GPL-3.0-or-later, OpenSSL"
 homepage="https://desktop.telegram.org/"
 changelog="https://github.com/telegramdesktop/tdesktop/blob/v${version}/changelog.txt"
