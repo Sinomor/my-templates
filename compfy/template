@@ -1,0 +1,26 @@
+# Template file for 'compfy'
+pkgname=compfy
+version=1.7.0
+revision=1
+build_style=meson
+configure_args="-Dwith_docs=false"
+hostmakedepends="pkg-config asciidoc"
+makedepends="MesaLib-devel dbus-devel libconfig-devel libev-devel pcre2-devel
+ pixman-devel xcb-util-image-devel xcb-util-renderutil-devel
+ libxdg-basedir-devel uthash"
+depends="desktop-file-utils"
+short_desc="A Linux Compositor for X11. Based on Picom. Providing Animations, Active Support and More! "
+license="MIT, MPL-2.0"
+homepage="https://github.com/allusive-dev/compfy"
+distfiles="https://github.com/allusive-dev/compfy/archive/refs/tags/${version}.tar.gz"
+checksum=0f402b775fc6d87e7ef6ac727b59112d6758295af35b53bd4782306b4e785da4
+
+post_install() {
+	vlicense LICENSES/MIT
+}
+
+compfy_package() {
+	depends="${sourcepkg}>=${version}_${revision}"
+	build_style=meta
+	short_desc+=" (transitional dummy package)"
+}
