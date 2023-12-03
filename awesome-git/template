@@ -1,7 +1,7 @@
-# Template file for 'awesome'
+# Template file for 'awesome-git'
 pkgname=awesome-git
 version=edge.0
-revision=4
+revision=1
 wrksrc=awesome-git-${version}
 build_style=cmake
 build_helper="qemu"
@@ -17,28 +17,15 @@ xcb-util-keysyms xcb-util-wm xcb-util-xrm xcb-util-errors librsvg libXfixes"
 short_desc="awesome-git edge.0"
 license="GPL-2.0-or-later"
 homepage="http://awesomewm.org"
-conflicts="awesome"
+conflicts="awesome awesome-luajit-git"
+replaces="awesome awesome-luajit-git"
 
-build_options="jit"
-build_options_default="jit"
-desc_option_jit="Use LuaJIT to build Awesome"
-
-
-if [ "$build_option_jit" ]; then
-	hostmakedepends+=" LuaJIT lua51-lgi"
-	makedepends+=" LuaJIT-devel lua51-lgi"
-	depends+=" lua51-lgi>=0.7.2"
-	configure_args+=" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr \
-	-DSYSCONFDIR=/etc -DLUA_LIBRARY=/usr/lib/libluajit-5.1.so \
-	-DLUA_INCLUDE_DIR=/usr/include/luajit-2.1 -DLUA_EXECUTABLE=/usr/bin/luajit"
-else
-	hostmakedepends+=" lua54 lua54-lgi"
-	makedepends+=" lua54-devel lua54-lgi"
-	depends+=" lua54-lgi>=0.7.2"
-	configure_args+=" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr \
-	-DSYSCONFDIR=/etc -DLUA_LIBRARY=/usr/lib/liblua5.4.so.5.4 \
-	-DLUA_INCLUDE_DIR=/usr/include/lua5.4 -DLUA_EXECUTABLE=/usr/bin/lua5.4"
-fi
+hostmakedepends+=" lua54 lua54-lgi"
+makedepends+=" lua54-devel lua54-lgi"
+depends+=" lua54-lgi>=0.7.2"
+configure_args+=" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr \
+-DSYSCONFDIR=/etc -DLUA_LIBRARY=/usr/lib/liblua5.4.so.5.4 \
+-DLUA_INCLUDE_DIR=/usr/include/lua5.4 -DLUA_EXECUTABLE=/usr/bin/lua5.4"
 
 CFLAGS="-fcommon"
 
