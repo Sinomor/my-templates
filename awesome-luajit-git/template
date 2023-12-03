@@ -1,0 +1,34 @@
+# Template file for 'awesome-luajit-git'
+pkgname=awesome-luajit-git
+version=edge.0
+revision=1
+wrksrc=awesome-git-${version}
+build_style=cmake
+build_helper="qemu"
+configure_args="-DSYSCONFDIR=/etc"
+conf_files="/etc/xdg/awesome/rc.lua"
+hostmakedepends="git ruby-asciidoctor ImageMagick pkg-config"
+makedepends="libxcb-devel pango-devel xcb-util-devel xcb-util-image-devel
+ xcb-util-keysyms-devel xcb-util-wm-devel xcb-util-cursor-devel
+ startup-notification-devel libxdg-basedir-devel
+ gdk-pixbuf-devel dbus-devel libxkbcommon-devel xcb-util-xrm-devel"
+depends="dbus-x11 pango libxdg-basedir libxkbcommon-x11 startup-notification xcb-util-cursor
+xcb-util-keysyms xcb-util-wm xcb-util-xrm xcb-util-errors librsvg libXfixes"
+short_desc="awesome-git edge.0"
+license="GPL-2.0-or-later"
+homepage="http://awesomewm.org"
+conflicts="awesome awesome-git"
+replaces="awesome awesome-git"
+
+hostmakedepends+=" LuaJIT lua51-lgi"
+makedepends+=" LuaJIT-devel lua51-lgi"
+depends+=" lua51-lgi>=0.7.2"
+configure_args+=" -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr \
+-DSYSCONFDIR=/etc -DLUA_LIBRARY=/usr/lib/libluajit-5.1.so \
+-DLUA_INCLUDE_DIR=/usr/include/luajit-2.1 -DLUA_EXECUTABLE=/usr/bin/luajit"
+
+CFLAGS="-fcommon"
+
+do_fetch() {
+	git clone --recursive https://github.com/awesomeWM/awesome.git ${wrksrc}
+}
